@@ -1,4 +1,4 @@
-
+# Main Window constants
 MAIN_GRID_HEIGHT = 10
 MAIN_GRID_WIDTH = 10
 

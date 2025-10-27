@@ -35,25 +35,21 @@ class GridSquare:
         )
 
     def toggle_state(self):
-        print("button clicked")
         if self.is_on:
             #turn button off
             self.button.config(bg=TOGGLE_OFF_BG, 
                                fg=TOGGLE_OFF_FG,
                                activebackground=TOGGLE_OFF_BG,
                                activeforeground=TOGGLE_OFF_FG)
-            print("turning off")
         else:
             #turn button on
             self.button.config(bg=TOGGLE_ON_BG,
                                fg=TOGGLE_ON_FG,
                                activebackground=TOGGLE_ON_BG,
                                activeforeground=TOGGLE_ON_FG)
-            print("turning on")
         
         #toggle state
         self.is_on = not self.is_on
-        print(f"button is now {self.is_on}")
         return
     
     def reset(self):

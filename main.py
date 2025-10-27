@@ -2,17 +2,17 @@ import tkinter as tk
 from grid_gui import *
 
 def main():
-    root = tk.Tk()
-    root.geometry('1400x900')
-    main_grid = grid_setup(root)
+    main_window_root = tk.Tk()
+   # main_window_root.geometry(MAIN_WINDOW_RESOLUTION)
+    main_grid = grid_setup(main_window_root)
 
-    clear_button = tk.Button(root, text="Clear",command=lambda:clear_grid(main_grid))
+    clear_button = tk.Button(main_window_root, text="Clear",command=lambda:clear_grid(main_grid))
     clear_button.grid(row=MAIN_GRID_CLEAR_HEIGHT_POSITION, column=MAIN_GRID_CLEAR_WIDTH_POSITION)
 
-    debug_text_button = tk.Button(root, text="Debug text", command=lambda:grid_status_in_text(main_grid))
+    debug_text_button = tk.Button(main_window_root, text="Debug text", command=lambda:grid_status_in_text(main_grid))
     debug_text_button.grid(row=MAIN_GRID_DEBUG_BUTTON_HEIGHT_POSITION,column=MAIN_GRID_DEBUG_BUTTON_WIDTH_POSITION)
 
-    root.mainloop()
+    main_window_root.mainloop()
 
 def grid_status_in_text(grid):
     text = ""
