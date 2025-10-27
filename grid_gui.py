@@ -16,19 +16,12 @@ def grid_setup(root):
 
     return grid
 
-# Function for toggling the grid square between on and off
-def toggle_grid_square():
-    return
-
 class GridSquare:
     def __init__(self, root):
         self.root = root
         self.is_on = False
+        self.is_solved = False
         
-
-
-
-
         self.button = tk.Button(
             root,
             bg = TOGGLE_OFF_BG,
@@ -62,3 +55,11 @@ class GridSquare:
         self.is_on = not self.is_on
         print(f"button is now {self.is_on}")
         return
+    
+    def reset(self):
+        self.is_on = False
+        self.is_solved = False
+        self.button.config(bg=TOGGLE_OFF_BG, 
+                               fg=TOGGLE_OFF_FG,
+                               activebackground=TOGGLE_OFF_BG,
+                               activeforeground=TOGGLE_OFF_FG)
