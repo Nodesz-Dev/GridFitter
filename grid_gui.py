@@ -16,6 +16,29 @@ def grid_setup(root):
 
     return grid
 
+def grid_apply(grid):
+    return
+
+def grid_reset(grid):
+    for row in range(len(grid)):
+        for col in range(len(grid[row])):
+            grid[row][col].reset()
+
+    return
+
+def grid_status_in_text(grid):
+    text = ""
+    for row in range(len(grid)):
+        for col in range(len(grid[row])):
+            if grid[row][col].is_on:
+                text += "0"
+            else:
+                text += "-"
+        text += "\n"
+    print(text)
+    return 
+
+
 class GridSquare:
     def __init__(self, root):
         self.root = root
@@ -24,10 +47,10 @@ class GridSquare:
         
         self.button = tk.Button(
             root,
-            bg = TOGGLE_OFF_BG,
-            fg = TOGGLE_OFF_FG,
-            activebackground=TOGGLE_OFF_BG,
-            activeforeground=TOGGLE_OFF_FG,
+            bg = TOGGLE_OFF_GRID_BG,
+            fg = TOGGLE_OFF_GRID_FG,
+            activebackground=TOGGLE_OFF_GRID_BG,
+            activeforeground=TOGGLE_OFF_GRID_FG,
             bd = 2,
             highlightthickness=0,
             relief=tk.RAISED,
@@ -37,16 +60,16 @@ class GridSquare:
     def toggle_state(self):
         if self.is_on:
             #turn button off
-            self.button.config(bg=TOGGLE_OFF_BG, 
-                               fg=TOGGLE_OFF_FG,
-                               activebackground=TOGGLE_OFF_BG,
-                               activeforeground=TOGGLE_OFF_FG)
+            self.button.config(bg=TOGGLE_OFF_GRID_BG, 
+                               fg=TOGGLE_OFF_GRID_FG,
+                               activebackground=TOGGLE_OFF_GRID_BG,
+                               activeforeground=TOGGLE_OFF_GRID_FG)
         else:
             #turn button on
-            self.button.config(bg=TOGGLE_ON_BG,
-                               fg=TOGGLE_ON_FG,
-                               activebackground=TOGGLE_ON_BG,
-                               activeforeground=TOGGLE_ON_FG)
+            self.button.config(bg=TOGGLE_ON_GRID_BG,
+                               fg=TOGGLE_ON_GRID_FG,
+                               activebackground=TOGGLE_ON_GRID_BG,
+                               activeforeground=TOGGLE_ON_GRID_FG)
         
         #toggle state
         self.is_on = not self.is_on
@@ -55,7 +78,7 @@ class GridSquare:
     def reset(self):
         self.is_on = False
         self.is_solved = False
-        self.button.config(bg=TOGGLE_OFF_BG, 
-                               fg=TOGGLE_OFF_FG,
-                               activebackground=TOGGLE_OFF_BG,
-                               activeforeground=TOGGLE_OFF_FG)
+        self.button.config(bg=TOGGLE_OFF_GRID_BG, 
+                               fg=TOGGLE_OFF_GRID_FG,
+                               activebackground=TOGGLE_OFF_GRID_BG,
+                               activeforeground=TOGGLE_OFF_GRID_FG)
