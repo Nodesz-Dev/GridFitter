@@ -1,4 +1,5 @@
 import tkinter as tk
+from globals import *
 from constants import *
 
 # Function for initialising the main grid and the array to store the grid states
@@ -16,13 +17,28 @@ def grid_setup(root):
 
     return grid
 
-def grid_apply(grid):
+def grid_apply():
+    selected_engines = get_selected_engines()
+    grid_reset()
+
+    for row in range(len(GLOBAL_Main_Grid)):
+        for col in range(len(GLOBAL_Main_Grid[row])):
+            if selected_engines[row][col] == 1:
+                GLOBAL_Main_Grid[row][col].toggle_state()
+
     return
 
-def grid_reset(grid):
-    for row in range(len(grid)):
-        for col in range(len(grid[row])):
-            grid[row][col].reset()
+def get_selected_engines():
+    selected_engines = GLOBAL_Current_Reactor.copy()
+    selected_engines += GLOBAL_Current_First_Generator.copy()
+    selected_engines += GLOBAL_Current_Second_Generator.copy()
+    
+    return selected_engines
+
+def grid_reset():
+    for row in range(len(GLOBAL_Main_Grid)):
+        for col in range(len(GLOBAL_Main_Grid[row])):
+            GLOBAL_Main_Grid[row][col].reset()
 
     return
 

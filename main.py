@@ -11,12 +11,13 @@ def main():
 
 def setup_main_window():
     main_window_root = tk.Tk()
-    main_grid = grid_setup(main_window_root)
+    global GLOBAL_Main_Grid
+    GLOBAL_Main_Grid[:] = grid_setup(main_window_root)
 
-    clear_button = tk.Button(main_window_root, text="Clear",command=lambda:grid_reset(main_grid))
+    clear_button = tk.Button(main_window_root, text="Clear",command=lambda:grid_reset())
     clear_button.grid(row=MAIN_GRID_CLEAR_HEIGHT_POSITION, column=MAIN_GRID_CLEAR_WIDTH_POSITION)
 
-    debug_text_button = tk.Button(main_window_root, text="Debug text", command=lambda:grid_status_in_text(main_grid))
+    debug_text_button = tk.Button(main_window_root, text="Debug text", command=lambda:grid_status_in_text(GLOBAL_Main_Grid))
     debug_text_button.grid(row=MAIN_GRID_DEBUG_BUTTON_HEIGHT_POSITION,column=MAIN_GRID_DEBUG_BUTTON_WIDTH_POSITION)
 
     return main_window_root

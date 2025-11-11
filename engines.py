@@ -1,6 +1,8 @@
 import tkinter as tk
 from constants import *
+from globals import *
 from engine_constants import *
+from grid_gui import grid_apply
 
 def reactor_dropdown_setup(root):
     selected_option = tk.StringVar()
@@ -14,10 +16,8 @@ def reactor_dropdown_setup(root):
     dropdown.grid(row=1,column=2)
 
     def reactor_on_select(var, index, mode, reactor_options=REACTOR_OPTIONS):
-    
-        print(f"variable: {selected_option.get()}")
-        print(f"index: {index}")
-        print(f"variable: {mode}")
+        reactor_index = reactor_options.index(selected_option.get())
+        apply_reactor_change(reactor_index)
         return
 
     selected_option.trace_add("write", reactor_on_select)
@@ -45,13 +45,24 @@ def generator_dropdown_setup(root, gen=1):
         dropdown.grid(row=3,column=2)
 
     def reactor_on_select(var, index, mode, generator=gen, generator_options=GENERATOR_OPTIONS):
-    
-        print(f"variable: {selected_option.get()}")
-        print(f"index: {index}")
-        print(f"variable: {mode}")
-        print(f"Gen num: {generator}")
+        gen_index = generator_options.index(selected_option.get())
+        apply_generator_change(gen_index, generator)
         return
 
     selected_option.trace_add("write", reactor_on_select)
 
     return 
+
+def apply_reactor_change(index):
+    tmp_reactor = REACTOR_ARRAYS[index].copy()
+    GLOBAL_Current_Reactor[:] = tmp_reactor
+    grid_apply()
+
+def apply_generator_change(index, gen_num):
+    tmp_gen = GENERATOR_ARRAYS[index].copy()
+    if gen_num == 1:
+        GLOBAL_Current_First_Generator[:] = tmp_gen
+    elif gen_num == 2:
+        GLOBAL_Current_Second_Generator[:] = tmp_gen
+
+    grid_apply()
