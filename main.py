@@ -1,6 +1,7 @@
 import tkinter as tk
 from grid_gui import *
 from engines import *
+from solver import *
 
 def main():
     root = setup_main_window()
@@ -14,11 +15,15 @@ def setup_main_window():
     global GLOBAL_Main_Grid
     GLOBAL_Main_Grid[:] = grid_setup(main_window_root)
 
+    # Clearn and debug text buttons and their setup
     clear_button = tk.Button(main_window_root, text="Clear",command=lambda:grid_reset())
     clear_button.grid(row=MAIN_GRID_CLEAR_HEIGHT_POSITION, column=MAIN_GRID_CLEAR_WIDTH_POSITION)
 
     debug_text_button = tk.Button(main_window_root, text="Debug text", command=lambda:grid_status_in_text(GLOBAL_Main_Grid))
     debug_text_button.grid(row=MAIN_GRID_DEBUG_BUTTON_HEIGHT_POSITION,column=MAIN_GRID_DEBUG_BUTTON_WIDTH_POSITION)
+
+    function_test_button = tk.Button(main_window_root, text="Test", command=lambda:solver_handler())
+    function_test_button.grid(row=MAIN_GRID_FUNCTION_TEST_BUTTON_HEIGHT_POSITION,column=MAIN_GRID_FUNCTION_TEST_BUTTON_WIDTH_POSITION)
 
     return main_window_root
 

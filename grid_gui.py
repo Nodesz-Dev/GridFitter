@@ -28,6 +28,13 @@ def grid_apply():
 
     return
 
+def grid_apply_solved():
+    # iterate through the grid applying the right colour to a grid square to represent a component location - use apply_colour() within the class
+    for row in range(len(GLOBAL_SOLVER_BEST_CASE_GRID)):
+        for col in range(len(GLOBAL_SOLVER_BEST_CASE_GRID[row])):
+            GLOBAL_Main_Grid[row][col].apply_colour("red")
+    return
+
 def get_selected_engines():
     selected_engines = GLOBAL_Current_Reactor.copy()
     selected_engines += GLOBAL_Current_First_Generator.copy()
@@ -94,7 +101,13 @@ class GridSquare:
     def reset(self):
         self.is_on = False
         self.is_solved = False
-        self.button.config(bg=TOGGLE_OFF_GRID_BG, 
-                               fg=TOGGLE_OFF_GRID_FG,
-                               activebackground=TOGGLE_OFF_GRID_BG,
-                               activeforeground=TOGGLE_OFF_GRID_FG)
+        self.button.config( bg=TOGGLE_OFF_GRID_BG, 
+                            fg=TOGGLE_OFF_GRID_FG,
+                            activebackground=TOGGLE_OFF_GRID_BG,
+                            activeforeground=TOGGLE_OFF_GRID_FG)
+        
+    def apply_colour(self, colour):
+        self.button.config( bg=colour,
+                            fg=colour,
+                            activebackground=colour,
+                            activeforeground=colour)
