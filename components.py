@@ -1,10 +1,13 @@
 from component_constants import *
-from globals import *
+import globals as gl
 
 # Get selected components and create a list which is returned
 # PLACEHOLDER CODE UNTIL COMPONENT SELECTOR UI IS CREATED
 def get_selected_components():
     selected = []
+    selected.append(SAMPLE_COMP_1)
+    selected.append(SAMPLE_COMP_2)
+    selected.append(SAMPLE_COMP_3)
     selected.append(SAMPLE_COMP_1)
     selected.append(SAMPLE_COMP_2)
     selected.append(SAMPLE_COMP_3)
@@ -15,15 +18,14 @@ def get_selected_components():
 def Component_list_creator():
     initial_component_array_list = get_selected_components()
     component_list = []
-    id = 1
+    id = 2 # start at 2 as 0 and 1 are reserved for empty and obstacle grid spaces respectively
     for array in initial_component_array_list:
         rotations = get_rotations(array)
         component = convert_to_component(id, rotations)
         component_list.append(component)
         id += 1
-
-    GLOBAL_COMPONENT_LIST = component_list.copy()
-    return 
+    gl.GLOBAL_COMPONENT_LIST[:] = component_list.copy()
+    return gl.GLOBAL_COMPONENT_LIST
 
 # convert a component array and its given id to a component object
 def convert_to_component(id, block_rotations):
@@ -41,12 +43,8 @@ def get_rotations(original_array):
         rotated = rotate_clockwise(rotated)
         if rotated == original_array:
             loop_break = True
-            print(f"LOOP BREAK")
         else:
             rotations_list.append(rotated)
-
-    #print(f"Original Array : {original_array}")
-    #print(f"Full rotation list : {rotations_list}")
     return rotations_list
 
 def rotate_clockwise(array):

@@ -32,4 +32,13 @@ TOGGLE_OFF_GRID_BG = "white"
 TOGGLE_OFF_GRID_FG = "white"
 
 # Colour array for the shape designer
-SHAPE_COLOUR_ARRAY = []
+SHAPE_COLOUR_ARRAY = ["white",
+                      "green",
+                      "blue",
+                      "yellow",
+                      "cyan",
+                      "magenta",
+                      "orange",
+                      "purple",
+                      "pink",
+                      "brown"]
